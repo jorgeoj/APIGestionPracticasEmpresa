@@ -1,10 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #cerrarSesion {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
 </head>
 <body>
+<button id="cerrarSesion">Cerrar Sesión</button>
 
+<h2>Listado de Tareas</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Actividad</th>
+        <th>Observaciones</th>
+        <th>Fecha</th>
+        <th>Horas</th>
+        <th>Práctica</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Aquí puedes agregar filas con datos de tareas -->
+    <tr>
+        <td>Ejercicio 1</td>
+        <td>Entregado a tiempo</td>
+        <td>2024-02-19</td>
+        <td>2</td>
+        <td>Sí</td>
+    </tr>
+    <!-- Puedes agregar más filas según sea necesario -->
+    </tbody>
+</table>
+
+<button id="agregarTarea">Agregar Tarea</button>
+
+<script>
+    document.getElementById('agregarTarea').addEventListener('click', function() {
+        // Puedes agregar aquí la lógica para agregar una nueva fila a la tabla
+        // Por ejemplo, podrías mostrar un formulario modal para ingresar los detalles de la tarea
+        alert('Funcionalidad de agregar tarea aún no implementada.');
+    });
+
+    document.getElementById('cerrarSesion').addEventListener('click', function() {
+        // Puedes agregar aquí la lógica para cerrar la sesión (redireccionar, mostrar un modal, etc.)
+        alert('Funcionalidad de cerrar sesión aún no implementada.');
+    });
+</script>
 </body>
 </html>
