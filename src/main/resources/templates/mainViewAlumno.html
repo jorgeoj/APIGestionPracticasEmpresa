@@ -2,102 +2,108 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Tareas</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <title>Lista Actividades</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            margin: 20px;
+            background-color: #b1dbff;
         }
 
-        h2 {
-            margin-bottom: 20px;
+        h1 {
+            text-align: center;
+            color: #002858;
         }
 
         table {
-            width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
+            color: #002858;
         }
 
         th {
-            background-color: #4caf50;
-            color: #fff;
+            background-color: rgb(248, 248, 248, 0.8);
+        }
+
+        tr {
+            background-color: rgb(248, 248, 248, 0.8);
+        }
+
+        a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+
+        .button-container {
+            text-align: center; /* Centra los botones */
+            margin-top: 20px; /* Ajusta según sea necesario */
         }
 
         button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px;
+            margin-top: 10px;
+            padding: 12px 20px; /* Ajusta el padding para hacer el botón más grande */
+            border-radius: 10px; /* Ajusta el radio para hacer el botón más redondeado */
+            background-color: #F5C22F; /* Ajusta el color de fondo según tu preferencia */
+            color: #002858;
             border: none;
-            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
             cursor: pointer;
+            font-weight: bold; /* Hace que el texto sea negrita */
         }
 
-        button:hover {
-            background-color: #45a049;
+        button a {
+            text-decoration: none;
+            color: #002858;
+            font-weight: bold; /* Hace que el texto sea negrita */
         }
 
-        #cerrarSesion {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        button a:visited {
+            color: #002858;
+            font-weight: bold; /* Hace que el texto sea negrita */
         }
     </style>
 </head>
 <body>
-<button id="cerrarSesion">Cerrar Sesión</button>
-
-<h2>Listado de Tareas</h2>
-
-<table>
+<h1>Lista de Actividades</h1>
+<table border="1">
     <thead>
     <tr>
-        <th>Actividad</th>
-        <th>Observaciones</th>
+        <th>Nombre de la Actividad</th>
         <th>Fecha</th>
-        <th>Horas</th>
-        <th>Práctica</th>
+        <th>Tipo de Práctica</th>
+        <th>Total de Horas</th>
+        <th>Observaciones</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Aquí puedes agregar filas con datos de tareas -->
-    <tr>
-        <td>Ejercicio 1</td>
-        <td>Entregado a tiempo</td>
-        <td>2024-02-19</td>
-        <td>2</td>
-        <td>Sí</td>
+    <tr th:each="actividad: ${actividades}">
+        <td>
+            <a th:href=" '/edit/'+${actividad.getId()}" th:text="${actividad.getActividad()}"></a>
+        </td>
+        <td th:text="${actividad.getFecha()}"></td>
+        <td th:text="${actividad.getTipo()}"></td>
+        <td th:text="${actividad.getHoras()}"></td>
+        <td th:text="${actividad.getObservacion()}"></td>
     </tr>
-    <!-- Puedes agregar más filas según sea necesario -->
     </tbody>
+
 </table>
-
-<button id="agregarTarea">Agregar Tarea</button>
-
-<script>
-    document.getElementById('agregarTarea').addEventListener('click', function() {
-        // Puedes agregar aquí la lógica para agregar una nueva fila a la tabla
-        // Por ejemplo, podrías mostrar un formulario modal para ingresar los detalles de la tarea
-        alert('Funcionalidad de agregar tarea aún no implementada.');
-    });
-
-    document.getElementById('cerrarSesion').addEventListener('click', function() {
-        // Puedes agregar aquí la lógica para cerrar la sesión (redireccionar, mostrar un modal, etc.)
-        alert('Funcionalidad de cerrar sesión aún no implementada.');
-    });
-</script>
+<div class="button-container">
+    <button><a href="/new">Añadir Actividad</a></button>
+    <button><a href="/logout">Cerrar Sesión</a></button>
+</div>
 </body>
 </html>
