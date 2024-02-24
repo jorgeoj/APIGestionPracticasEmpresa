@@ -30,8 +30,8 @@ public class AlumnoWebController {
     }
 
     // TODO Comprobar si esta bien
-    @GetMapping("/{alumno}")
-    public String getActividadesByAlumno(@PathVariable Long alumno, Model model, HttpServletRequest request) {
+    @GetMapping("/{idalumno}")
+    public String getActividadesByAlumno(@PathVariable Long idalumno, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Alumno alumnoSession = (Alumno) session.getAttribute("alumno");
 
@@ -39,7 +39,7 @@ public class AlumnoWebController {
             Alumno alumno2 = alumnoSession;
             model.addAttribute("actividades",actividadRepository.getAllByAlumno(alumno2));
             System.out.println(actividadRepository.getAllByAlumno(alumno2));
-            return "getActividadesByAlumno";
+            return "mainViewAlumno";
         }else{
             model.addAttribute("alumno",new Alumno());
             return "login";
@@ -47,7 +47,7 @@ public class AlumnoWebController {
     }
 
     // TODO Probar si funciona
-    @PostMapping("/nueva")
+    @PostMapping("/new")
     public String newActividad(@ModelAttribute Actividad actividad, HttpServletRequest request, Model model){
         HttpSession session=request.getSession();
         Alumno alumno = (Alumno) session.getAttribute("alumno");
@@ -64,14 +64,14 @@ public class AlumnoWebController {
             return "login";
         } else if (actividad.getActividad().equals("") || actividad.getFecha().equals("") ||
                 actividad.getTipo() == null || actividad.getHoras() == null) {
-            return "redirect:/nueva";
+            return "redirect:/new";
         } else{
             return "";
         }
     }
 
     // TODO Probar si funciona
-    @GetMapping("/nueva")
+    @GetMapping("/new")
     public String newActividad(Model model,HttpServletRequest request){
         Actividad actividad = new Actividad();
 
@@ -88,7 +88,7 @@ public class AlumnoWebController {
     }
 
     // TODO Probar si funciona
-    @GetMapping("/editar/{idActividad}")
+    @GetMapping("/edit/{idActividad}")
     public String editarActividad(@PathVariable Long idActividad, Model model, HttpServletRequest request){
         HttpSession session=request.getSession();
         Alumno alumno = (Alumno) session.getAttribute("alumno");
@@ -132,7 +132,7 @@ public class AlumnoWebController {
     }
 
     // TODO Probar si funciona
-    @GetMapping("/succesfull")
+    @PostMapping("/succesfull")
     public String getAlumno(@ModelAttribute Alumno alumno, HttpServletRequest request){
         Boolean existencia = alumnoRepository.existsAlumnoByEmail(alumno.getEmail());
         System.out.println(existencia.toString());
@@ -141,7 +141,7 @@ public class AlumnoWebController {
             if(alumnoBBDD.getContrasenya().equals(alumno.getContrasenya())){
                 HttpSession s = request.getSession();
                 s.setAttribute("alumno",alumnoBBDD);
-                return "redirect:/"+Long.valueOf( alumnoBBDD.getIdalumno());
+                return "redirect:/"+ alumnoBBDD.getIdalumno();
             }else{
                 return "redirect:/login";
             }

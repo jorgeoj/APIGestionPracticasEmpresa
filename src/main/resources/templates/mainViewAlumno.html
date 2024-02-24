@@ -91,7 +91,7 @@
     <tbody>
     <tr th:each="actividad: ${actividades}">
         <td>
-            <a th:href=" '/edit/'+${actividad.getId()}" th:text="${actividad.getActividad()}"></a>
+            <a th:href=" '/edit/'+${actividad.getIdactividad()}" th:text="${actividad.getActividad()}"></a>
         </td>
         <td th:text="${actividad.getFecha()}"></td>
         <td th:text="${actividad.getTipo()}"></td>
