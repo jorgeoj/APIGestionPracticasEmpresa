@@ -1,5 +1,6 @@
 package com.example.apigestionpracticasempresa;
 
+import com.example.apigestionpracticasempresa.Util.Utility;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,6 +17,7 @@ public class ApiGestionPracticasEmpresaApplication {
      */
     public static void main(String[] args) {
         SpringApplication.run(ApiGestionPracticasEmpresaApplication.class, args);
+        Utility.launchWeb();
     }
 
 }
